@@ -6,6 +6,7 @@ import static com.codeborne.selenide.Selenide.$;
 
 public class LoginPage {
 
+// TODO глобальные константы должны храниться в interface и в специальном файле(homePageUrl не принадлежит LoginPage)
     String homePageURL = "https://news-feed-2.dunice-testing.com/";
 
     SelenideElement regWindow = $(By.className("modal-content"));

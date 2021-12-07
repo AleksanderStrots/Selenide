@@ -40,6 +40,7 @@ public class Methods {
         loginPage.passwordReg.shouldBe(Condition.visible).click();
         loginPage.passwordReg.sendKeys(generateRandomHexString(symbolCount));
         passwordText = loginPage.passwordReg.getAttribute("value");
+// TODO такие строки должны быть в переменных окружения или в контантах
         String avatarPath = "src/main/resources/avatar.jpeg";
         File file = new File(new File(avatarPath).getAbsolutePath());
         loginPage.avatarReg.sendKeys(file.getAbsolutePath());

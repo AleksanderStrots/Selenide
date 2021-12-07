@@ -5,6 +5,8 @@ import static com.codeborne.selenide.Selenide.$;
 
 public class AccountPage {
 
+// TODO лучше использовать final var или lombok val для всех типов
+// TODO нужно ставить модификатор доступа private и создавать геттеры и сеттеры(через lombok) на поля чтобы соблюдать инкапсуляцию
     SelenideElement userInfo = $(By.xpath("//div[contains(text(),'User info')]"));
     SelenideElement updateButton = $(By.xpath("//button[contains(text(),'Update')]"));
     SelenideElement newPostButton = $(By.xpath("//button[contains(text(),'New Post')]"));
