@@ -6,10 +6,7 @@ import io.qameta.allure.Story;
 import org.junit.jupiter.api.Test;
 import org.testng.asserts.SoftAssert;
 
-import static com.codeborne.selenide.Selenide.open;
-
 public class CreateNewPostTest extends SetUp {
-    private final LoginPage loginPage = new LoginPage();
     private final Methods methods = new Methods();
     private final HeaderElements headerElements = new HeaderElements();
     private final AccountPage accountPage = new AccountPage();
@@ -23,19 +20,18 @@ public class CreateNewPostTest extends SetUp {
     @Test
     public void createNewPostTestPositive() {
 
-        open(loginPage.homePageURL);
         methods.registration(6);
         methods.createPost(10,10,10);
 
-        sa.assertEquals(accountPage.postTitle.getText(), methods.title, "Wrong title");
-        sa.assertEquals(accountPage.postText.getText(), methods.postText, "Wrong content");
-        sa.assertEquals(accountPage.postTag.getText(), "#" + methods.tag, "Wrong tag");
-        sa.assertEquals(accountPage.postAuthor.getText(), methods.loginText, "Wrong author");
+        sa.assertEquals(accountPage.getPostTitle().getText(), methods.title, "Wrong title");
+        sa.assertEquals(accountPage.getPostText().getText(), methods.postText, "Wrong content");
+        sa.assertEquals(accountPage.getPostTag().getText(), "#" + methods.tag, "Wrong tag");
+        sa.assertEquals(accountPage.getPostAuthor().getText(), methods.loginText, "Wrong author");
 
-        headerElements.homeButton.shouldBe(Condition.visible).click();
-        homePage.post.shouldBe(Condition.visible);
-        sa.assertTrue(homePage.post.exists(), "Post not exists");
-        sa.assertEquals(homePage.postText.getText(), methods.postText, "Wrong content");
+        headerElements.getHomeButton().shouldBe(Condition.visible).click();
+        homePage.getPost().shouldBe(Condition.visible);
+        sa.assertTrue(homePage.getPost().exists(), "Post not exists");
+        sa.assertEquals(homePage.getPostText().getText(), methods.postText, "Wrong content");
         sa.assertAll();
 //        methods.deleteUser();
     }
@@ -46,12 +42,11 @@ public class CreateNewPostTest extends SetUp {
     @Description(value = "Post creation check with invalid title.")
     @Test
     public void createNewPostTestNegativeInvalidTitle() {
-        open(loginPage.homePageURL);
         methods.registration(6);
         methods.createPost(1,10,10);
-        accountPage.errorMessage.should(Condition.exist);
-        sa.assertTrue(accountPage.errorMessage.exists(), "Error message not exists");
-        sa.assertEquals(accountPage.errorMessage.getText(), "news title size not valid", "Wrong error message");
+        accountPage.getErrorMessage().should(Condition.exist);
+        sa.assertTrue(accountPage.getErrorMessage().exists(), "Error message not exists");
+        sa.assertEquals(accountPage.getErrorMessage().getText(), "news title size not valid", "Wrong error message");
         sa.assertAll();
 //        methods.deleteUser();
     }
@@ -62,12 +57,11 @@ public class CreateNewPostTest extends SetUp {
     @Description(value = "Post creation check with invalid content.")
     @Test
     public void createNewPostTestNegativeInvalidContent() {
-        open(loginPage.homePageURL);
         methods.registration(6);
         methods.createPost(10,1,10);
-        accountPage.errorMessage.should(Condition.exist);
-        sa.assertTrue(accountPage.errorMessage.exists(), "Error message not exists");
-        sa.assertEquals(accountPage.errorMessage.getText(), "NEWS_DESCRIPTION_SIZE_NOT_VALID", "Wrong error message");
+        accountPage.getErrorMessage().should(Condition.exist);
+        sa.assertTrue(accountPage.getErrorMessage().exists(), "Error message not exists");
+        sa.assertEquals(accountPage.getErrorMessage().getText(), "NEWS_DESCRIPTION_SIZE_NOT_VALID", "Wrong error message");
         sa.assertAll();
 //        methods.deleteUser();
     }
@@ -78,13 +72,12 @@ public class CreateNewPostTest extends SetUp {
     @Description(value = "Post creation check with invalid tags.")
     @Test
     public void createNewPostTestNegativeInvalidTags() {
-        open(loginPage.homePageURL);
         methods.registration(6);
         methods.createPost(10,10,0);
 
-        accountPage.errorMessage.should(Condition.exist);
-        sa.assertTrue(accountPage.errorMessage.exists(), "Error message not exists");
-        sa.assertEquals(accountPage.errorMessage.getText(), "TAGS_NOT_VALID", "Wrong error message");
+        accountPage.getErrorMessage().should(Condition.exist);
+        sa.assertTrue(accountPage.getErrorMessage().exists(), "Error message not exists");
+        sa.assertEquals(accountPage.getErrorMessage().getText(), "TAGS_NOT_VALID", "Wrong error message");
         sa.assertAll();
 //        methods.deleteUser();
     }

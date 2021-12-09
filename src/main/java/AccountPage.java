@@ -1,8 +1,10 @@
 import com.codeborne.selenide.SelenideElement;
+import lombok.Value;
 import org.openqa.selenium.By;
 
 import static com.codeborne.selenide.Selenide.$;
 
+@Value
 public class AccountPage {
 
     SelenideElement userInfo = $(By.xpath("//div[contains(text(),'User info')]"));
@@ -35,5 +37,4 @@ public class AccountPage {
     SelenideElement newPostTagsField = $(By.xpath("//body/div[3]/div[1]/div[1]/form[1]/div[4]/input[1]"));
     SelenideElement newPostCloseButton = $(By.xpath("//button[contains(text(),'Close')]"));
     SelenideElement newPostSaveButton = $(By.xpath("//button[contains(text(),'Save')]"));
-
 }

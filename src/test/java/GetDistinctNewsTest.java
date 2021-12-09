@@ -6,8 +6,6 @@ import io.qameta.allure.Story;
 import org.junit.jupiter.api.Test;
 import org.testng.asserts.SoftAssert;
 
-import static com.codeborne.selenide.Selenide.open;
-
 public class GetDistinctNewsTest extends SetUp {
     private final LoginPage loginPage = new LoginPage();
     private final Methods methods = new Methods();
@@ -22,18 +20,17 @@ public class GetDistinctNewsTest extends SetUp {
     @Test
     public void getDistinctNewsTest() {
 
-        open(loginPage.homePageURL);
         methods.registration(6);
         methods.createPost(10,10,10);
 
-        headerElements.homeButton.shouldBe(Condition.visible).click();
-        homePage.searchField.val(methods.title);
-        homePage.searchButton.shouldBe(Condition.visible).click();
-        homePage.post.shouldBe(Condition.visible);
-        sa.assertTrue(homePage.post.exists(), "Post not exists");
-        sa.assertEquals(homePage.postTitle.getText(), methods.title, "Wrong title");
-        sa.assertEquals(homePage.postText.getText(), methods.postText, "Wrong content");
-        sa.assertEquals(homePage.postTags.getText(), "#" + methods.tag, "Wrong tag");
+        headerElements.getHomeButton().shouldBe(Condition.visible).click();
+        homePage.getSearchField().val(methods.title);
+        homePage.getSearchButton().shouldBe(Condition.visible).click();
+        homePage.getPost().shouldBe(Condition.visible);
+        sa.assertTrue(homePage.getPost().exists(), "Post not exists");
+        sa.assertEquals(homePage.getPostTitle().getText(), methods.title, "Wrong title");
+        sa.assertEquals(homePage.getPostText().getText(), methods.postText, "Wrong content");
+        sa.assertEquals(homePage.getPostTags().getText(), "#" + methods.tag, "Wrong tag");
         sa.assertAll();
 //        methods.deleteUser();
     }

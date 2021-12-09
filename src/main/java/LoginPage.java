@@ -4,9 +4,10 @@ import org.openqa.selenium.By;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 
+
 public class LoginPage {
 
-    String homePageURL = "https://news-feed-2.dunice-testing.com/";
+//    String homePageURL = "https://news-feed-2.dunice-testing.com/";
 
     SelenideElement regWindow = $(By.className("modal-content"));
     SelenideElement emailReg = $(By.cssSelector("body > div.fade.modal.show > div > div > form > div:nth-child(1) > input"));

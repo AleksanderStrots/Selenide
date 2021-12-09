@@ -1,9 +1,11 @@
 import com.codeborne.selenide.SelenideElement;
+import lombok.Value;
 import org.openqa.selenium.By;
 
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 
+@Value
 public class HeaderElements {
     SelenideElement logInButton = $(byText("Log In"));
     SelenideElement signUpButton = $(byText("Sign Up"));

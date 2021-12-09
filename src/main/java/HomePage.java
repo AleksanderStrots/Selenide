@@ -1,8 +1,10 @@
 import com.codeborne.selenide.SelenideElement;
+import lombok.Value;
 import org.openqa.selenium.By;
 
 import static com.codeborne.selenide.Selenide.$;
 
+@Value
 public class HomePage {
     SelenideElement searchField = $(By.xpath("//body/div[@id='root']/div[1]/main[1]/div[1]/form[1]/div[1]/input[1]"));
     SelenideElement searchButton = $(By.xpath("//button[contains(text(),'Search')]"));
