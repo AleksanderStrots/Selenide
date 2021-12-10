@@ -39,6 +39,6 @@ public class ChangeUserInfoTest extends SetUp {
         sa.assertEquals(accountPage.getLoginInfo().getText(), ("User login: " + newName), "Wrong user login");
         sa.assertAll();
 
-//        methods.deleteUser();
+        methods.deleteUser();
     }
 }

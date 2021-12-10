@@ -1,3 +1,4 @@
+import com.codeborne.selenide.Condition;
 import io.qameta.allure.Description;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
@@ -5,7 +6,7 @@ import io.qameta.allure.Story;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
-public class DeletePostTest {
+public class DeletePostTest extends SetUp {
     private final Methods methods = new Methods();
     private final AccountPage accountPage = new AccountPage();
 
@@ -18,7 +19,8 @@ public class DeletePostTest {
         methods.registration(6);
         methods.createPost(10, 10, 10);
         methods.deletePost();
-        assertFalse(accountPage.getPost().exists(), "Post was not deleted");
-//        methods.deleteUser();
+        accountPage.getPost().shouldNotBe(Condition.visible);
+        assertFalse(accountPage.getPost().isDisplayed(), "Post was not deleted");
+        methods.deleteUser();
     }
 }

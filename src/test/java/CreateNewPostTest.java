@@ -34,8 +34,8 @@ public class CreateNewPostTest extends SetUp {
         sa.assertTrue(homePage.getPost().exists(), "Post not exists");
         sa.assertEquals(homePage.getPostText().getText(), methods.postText, "Wrong content");
         sa.assertAll();
-//        methods.deletePost();
-//        methods.deleteUser();
+        methods.deletePost();
+        methods.deleteUser();
     }
 
     @Epic(value = "Account page.")
@@ -50,7 +50,7 @@ public class CreateNewPostTest extends SetUp {
         sa.assertTrue(accountPage.getErrorMessage().exists(), "Error message not exists");
         sa.assertEquals(accountPage.getErrorMessage().getText(), "news title size not valid", "Wrong error message");
         sa.assertAll();
-//        methods.deleteUser();
+        methods.deleteUser();
     }
 
     @Epic(value = "Account page.")
@@ -65,7 +65,7 @@ public class CreateNewPostTest extends SetUp {
         sa.assertTrue(accountPage.getErrorMessage().exists(), "Error message not exists");
         sa.assertEquals(accountPage.getErrorMessage().getText(), "NEWS_DESCRIPTION_SIZE_NOT_VALID", "Wrong error message");
         sa.assertAll();
-//        methods.deleteUser();
+        methods.deleteUser();
     }
 
     @Epic(value = "Account page.")
@@ -81,6 +81,6 @@ public class CreateNewPostTest extends SetUp {
         sa.assertTrue(accountPage.getErrorMessage().exists(), "Error message not exists");
         sa.assertEquals(accountPage.getErrorMessage().getText(), "TAGS_NOT_VALID", "Wrong error message");
         sa.assertAll();
-//        methods.deleteUser();
+        methods.deleteUser();
     }
 }

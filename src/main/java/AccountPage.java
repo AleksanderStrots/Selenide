@@ -3,12 +3,13 @@ import lombok.Value;
 import org.openqa.selenium.By;
 
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$$;
 
 @Value
 public class AccountPage {
 
     SelenideElement userInfo = $(By.xpath("//div[contains(text(),'User info')]"));
-    SelenideElement updateButton = $(By.xpath("//button[contains(text(),'Update')]"));
+    SelenideElement updateButton = $$(By.xpath("//button[contains(text(),'Update')]")).get(0);
     SelenideElement newPostButton = $(By.xpath("//button[contains(text(),'New Post')]"));
     SelenideElement loginInfo = $(By.xpath("//body/div[@id='root']/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]"));
     SelenideElement emailInfo = $(By.xpath("//body[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[2]"));
@@ -20,10 +21,18 @@ public class AccountPage {
     SelenideElement postText = $(By.xpath("/html[1]/body[1]/div[1]/div[1]/div[1]/div[2]/div[4]/div[1]/div[1]/p[1]"));
     SelenideElement postTag = $(By.xpath("/html[1]/body[1]/div[1]/div[1]/div[1]/div[2]/div[4]/div[1]/div[1]/div[2]"));
     SelenideElement postAuthor = $(By.xpath("/html[1]/body[1]/div[1]/div[1]/div[1]/div[2]/div[4]/div[1]/a[1]"));
-//    SelenideElement deletePostButton = $();
-//    SelenideElement changePostButton = $();
-//    SelenideElement changePostWindow = $();
+    SelenideElement deletePostButton = $(By.xpath("//button[contains(text(),'Delete')]"));
+    SelenideElement changePostButton = $$("//button[contains(text(),'Update')]").get(1);
     SelenideElement errorMessage = $(By.cssSelector("div:nth-child(2) div:nth-child(1) div.Profile_profile__3dzvr div:nth-child(2) > div.fade.alert.alert-danger.show:nth-child(4)"));
+
+    // update post form
+    SelenideElement changePostWindow = $(By.xpath("//body/div[3]/div[1]/div[1]"));
+    SelenideElement changePostTitleField = $(By.xpath("//body/div[3]/div[1]/div[1]/form[1]/div[1]/input[1]"));
+    SelenideElement changePostTextField = $(By.xpath("//body/div[3]/div[1]/div[1]/form[1]/div[2]/textarea[1]"));
+    SelenideElement changePostPictureButton = $(By.xpath("//body/div[3]/div[1]/div[1]/form[1]/div[3]/input[1]"));
+    SelenideElement changePostTagsField = $(By.xpath("//body/div[3]/div[1]/div[1]/form[1]/div[4]/input[1]"));
+    SelenideElement changePostCloseButton = $(By.xpath("//button[contains(text(),'Close')]"));
+    SelenideElement changePostSaveButton = $(By.xpath("//button[contains(text(),'Save')]"));
 
     // update profile form
     SelenideElement updateProfileWindow = $(By.xpath("//body/div[3]/div[1]/div[1]"));
@@ -41,4 +50,6 @@ public class AccountPage {
     SelenideElement newPostTagsField = $(By.xpath("//body/div[3]/div[1]/div[1]/form[1]/div[4]/input[1]"));
     SelenideElement newPostCloseButton = $(By.xpath("//button[contains(text(),'Close')]"));
     SelenideElement newPostSaveButton = $(By.xpath("//button[contains(text(),'Save')]"));
-}
+
+
+ }

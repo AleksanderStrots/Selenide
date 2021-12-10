@@ -1,0 +1,15 @@
+# Default ignored files
+/shelf/
+/workspace.xml
+target/
+log/
+build/
+allure-results/
+
+# Mac
+.DS_Store
+
+# Intellij
+.idea/
+*.iml
+*.iws

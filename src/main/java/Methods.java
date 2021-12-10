@@ -1,5 +1,4 @@
 import com.codeborne.selenide.Condition;
-import com.codeborne.selenide.Selenide;
 import io.qameta.allure.Step;
 import lombok.SneakyThrows;
 import org.openqa.selenium.Alert;
@@ -75,7 +74,7 @@ public class Methods {
     public void deletePost() {
         headerElements.getAccountButton().shouldBe(Condition.visible).click();
         accountPage.getPost().shouldBe(Condition.visible);
-//        accountPage.getDeletePostButton().shouldBe(Condition.visible).click();
+        accountPage.getDeletePostButton().shouldBe(Condition.visible).click();
     }
 
     @SneakyThrows

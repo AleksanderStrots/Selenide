@@ -32,7 +32,7 @@ public class LoginTest extends SetUp {
         assertEquals(("Hello, " + methods.loginText), headerElements.getHelloHeader().getText(), "Greeting not matching");
 
         // delete user
-//        methods.deleteUser();
+        methods.deleteUser();
     }
 
     @Epic(value = "Login page.")
@@ -51,7 +51,6 @@ public class LoginTest extends SetUp {
         sa.assertTrue(headerElements.getErrorMessage().exists(), "Error message not exists");
         sa.assertEquals(headerElements.getErrorMessage().getText(), "password not valid");
         sa.assertAll();
-//        methods.deleteUser();
     }
 
     @Epic(value = "Login page.")
@@ -70,6 +69,5 @@ public class LoginTest extends SetUp {
         sa.assertTrue(headerElements.getErrorMessage().exists(), "Error message not exists");
         sa.assertEquals(headerElements.getErrorMessage().getText(), "Could not find user", "Wrong error message");
         sa.assertAll();
-//        methods.deleteUser();
     }
 }

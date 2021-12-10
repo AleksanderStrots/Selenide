@@ -32,6 +32,6 @@ public class GetDistinctNewsTest extends SetUp {
         sa.assertEquals(homePage.getPostText().getText(), methods.postText, "Wrong content");
         sa.assertEquals(homePage.getPostTags().getText(), "#" + methods.tag, "Wrong tag");
         sa.assertAll();
-//        methods.deleteUser();
+        methods.deleteUser();
     }
 }

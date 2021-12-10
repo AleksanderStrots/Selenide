@@ -29,6 +29,6 @@ public class GetUserInfoTest extends SetUp {
         sa.assertEquals(accountPage.getLoginInfo().getText(), ("User login: " + methods.loginText), "Wrong user login");
         sa.assertAll();
 
-//        methods.deleteUser();
+        methods.deleteUser();
     }
 }
