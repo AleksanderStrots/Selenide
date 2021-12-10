@@ -22,6 +22,7 @@ public class CreateNewPostTest extends SetUp {
 
         methods.registration(6);
         methods.createPost(10,10,10);
+        accountPage.getPost().shouldBe(Condition.visible);
 
         sa.assertEquals(accountPage.getPostTitle().getText(), methods.title, "Wrong title");
         sa.assertEquals(accountPage.getPostText().getText(), methods.postText, "Wrong content");
@@ -33,6 +34,7 @@ public class CreateNewPostTest extends SetUp {
         sa.assertTrue(homePage.getPost().exists(), "Post not exists");
         sa.assertEquals(homePage.getPostText().getText(), methods.postText, "Wrong content");
         sa.assertAll();
+//        methods.deletePost();
 //        methods.deleteUser();
     }
 

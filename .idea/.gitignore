@@ -3,8 +3,8 @@
 /workspace.xml
 target/
 log/
-../build/
-../allure-results/
+../build
+../allure-results
 
 # Mac
 .DS_Store

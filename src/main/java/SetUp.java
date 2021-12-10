@@ -2,7 +2,6 @@ import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.WebDriverRunner;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import io.qameta.allure.selenide.AllureSelenide;
-import lombok.val;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -18,7 +17,7 @@ public class SetUp {
     public void setUp() {
         Configuration.startMaximized = true;
         Configuration.timeout = 10000;
-        Configuration.headless = true;
+//        Configuration.headless = true;
     }
 
     @AfterEach

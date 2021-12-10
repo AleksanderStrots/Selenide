@@ -10,7 +10,7 @@ public class HeaderElements {
     SelenideElement logInButton = $(byText("Log In"));
     SelenideElement signUpButton = $(byText("Sign Up"));
     SelenideElement homeButton = $(By.xpath("//a[contains(text(),'Newsfeeds')]"));
-    SelenideElement accountButton = $(By.xpath("//*[@id=\"root\"]/div/header/div/div[2]/a[2]"));
+    SelenideElement accountButton = $(By.xpath("//a[contains(text(),'My profile')]"));
     SelenideElement quitButton = $(byText("Sign Out"));
     SelenideElement emailField = $(By.id("formBasicEmail"));
     SelenideElement passwordField = $(By.id("formBasicPassword"));

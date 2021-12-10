@@ -1,6 +1,11 @@
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.Selenide;
 import io.qameta.allure.Step;
+import lombok.SneakyThrows;
+import org.openqa.selenium.Alert;
+
 import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.Selenide.switchTo;
 
 import java.io.File;
 import java.util.Random;
@@ -36,12 +41,14 @@ public class Methods {
         loginPage.emailReg.shouldBe(Condition.visible).click();
         loginPage.emailReg.sendKeys(generateRandomHexString(symbolCount) + "@gmail.com");
         emailText = loginPage.emailReg.getAttribute("value");
+        System.out.println(emailText);
         loginPage.loginReg.shouldBe(Condition.visible).click();
         loginPage.loginReg.sendKeys(generateRandomHexString(symbolCount));
         loginText = loginPage.loginReg.getAttribute("value");
         loginPage.passwordReg.shouldBe(Condition.visible).click();
         loginPage.passwordReg.sendKeys(generateRandomHexString(symbolCount));
         passwordText = loginPage.passwordReg.getAttribute("value");
+        System.out.println(passwordText);
         File file = new File(new File(Constants.AVATAR_PATH_FOR_REG).getAbsolutePath());
         loginPage.avatarReg.sendKeys(file.getAbsolutePath());
         loginPage.saveButton.click();
@@ -63,12 +70,20 @@ public class Methods {
         File file = new File(new File(Constants.POST_PICTURE_PATH).getAbsolutePath());
         accountPage.getNewPostPictureButton().sendKeys(file.getAbsolutePath());
         accountPage.getNewPostSaveButton().click();
-
     }
 
-//    public void deleteUser() {
-//        headerElements.accountButton.shouldBe(Condition.visible).click();
-//        accountPage.deleteUser.shouldBe(Condition.visible).click();
-//    }
+    public void deletePost() {
+        headerElements.getAccountButton().shouldBe(Condition.visible).click();
+        accountPage.getPost().shouldBe(Condition.visible);
+//        accountPage.getDeletePostButton().shouldBe(Condition.visible).click();
+    }
 
+    @SneakyThrows
+    public void deleteUser() {
+        headerElements.getAccountButton().shouldBe(Condition.visible).click();
+        accountPage.getDeleteProfileButton().shouldBe(Condition.visible).click();
+        Alert alert = switchTo().alert();
+        alert.accept();
+        Thread.sleep(2000);
+    }
 }
