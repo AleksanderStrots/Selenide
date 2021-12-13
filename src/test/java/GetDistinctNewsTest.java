@@ -25,7 +25,7 @@ public class GetDistinctNewsTest extends SetUp {
         homePage.getSearchField().val(methods.title);
         homePage.getSearchButton().shouldBe(Condition.visible).click();
         homePage.getPost().shouldBe(Condition.visible);
-        sa.assertTrue(homePage.getPost().exists(), "Post not exists");
+        sa.assertTrue(homePage.getPost().exists(), "Post not found");
         sa.assertEquals(homePage.getPostTitle().getText(), methods.title, "Wrong title");
         sa.assertEquals(homePage.getPostText().getText(), methods.postText, "Wrong content");
         sa.assertEquals(homePage.getPostTags().getText(), "#" + methods.tag, "Wrong tag");

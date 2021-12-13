@@ -12,6 +12,7 @@ public class Methods {
     private final LoginPage loginPage = new LoginPage();
     private final HeaderElements headerElements = new HeaderElements();
     private final AccountPage accountPage = new AccountPage();
+    private final Constants constants = new Constants();
 
     String loginText;
     String emailText;
@@ -32,7 +33,7 @@ public class Methods {
 
     @Step("registration")
     public void registration(int symbolCount) {
-        open(Constants.HOME_PAGE_URL);
+        open(constants.getHOME_PAGE_URL());
         headerElements.getSignUpButton().shouldBe(Condition.visible).click();
         loginPage.getRegWindow().shouldBe(Condition.visible);
         loginPage.getEmailReg().shouldBe(Condition.visible).click();
@@ -44,7 +45,7 @@ public class Methods {
         loginPage.getPasswordReg().shouldBe(Condition.visible).click();
         loginPage.getPasswordReg().sendKeys(generateRandomHexString(symbolCount));
         passwordText = loginPage.getPasswordReg().getAttribute("value");
-        File file = new File(new File(Constants.AVATAR_PATH_FOR_REG).getAbsolutePath());
+        File file = new File(new File(constants.getAVATAR_PATH_FOR_REG()).getAbsolutePath());
         loginPage.getAvatarReg().sendKeys(file.getAbsolutePath());
         loginPage.getSaveButton().click();
         headerElements.getHelloHeader().shouldBe(Condition.visible);
@@ -62,7 +63,7 @@ public class Methods {
         postText = accountPage.getNewPostTextField().getAttribute("value");
         accountPage.getNewPostTagsField().sendKeys(Methods.generateRandomHexString(tagSymbolCount));
         tag = accountPage.getNewPostTagsField().getAttribute("value");
-        File file = new File(new File(Constants.POST_PICTURE_PATH).getAbsolutePath());
+        File file = new File(new File(constants.getPOST_PICTURE_PATH()).getAbsolutePath());
         accountPage.getNewPostPictureButton().sendKeys(file.getAbsolutePath());
         accountPage.getNewPostSaveButton().click();
     }

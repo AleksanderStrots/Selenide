@@ -14,6 +14,7 @@ public class ChangeUserInfoTest extends SetUp {
     private final Methods methods = new Methods();
     private final HeaderElements headerElements = new HeaderElements();
     private final AccountPage accountPage = new AccountPage();
+    private final Constants constants = new Constants();
     SoftAssert sa = new SoftAssert ();
 
     @Epic(value = "Account page.")
@@ -30,7 +31,7 @@ public class ChangeUserInfoTest extends SetUp {
         String newEmail = accountPage.getNewEmail().getAttribute("value");
         accountPage.getNewName().sendKeys(methods.generateRandomHexString(6));
         String newName = accountPage.getNewName().getAttribute("value");
-        File file = new File(new File(Constants.AVATAR_PATH_FOR_CHANGE).getAbsolutePath());
+        File file = new File(new File(constants.getAVATAR_PATH_FOR_CHANGE()).getAbsolutePath());
         accountPage.getNewAvatarButton().sendKeys(file.getAbsolutePath());
         accountPage.getUpdateProfileSaveButton().shouldBe(Condition.visible).click();
         accountPage.getLoginInfo().shouldBe(Condition.visible).shouldHave(Condition.exactText("User login: " + newName));
@@ -53,12 +54,12 @@ public class ChangeUserInfoTest extends SetUp {
         accountPage.getUpdateProfileWindow().shouldBe(Condition.visible);
         accountPage.getNewEmail().sendKeys(methods.generateRandomHexString(6) + "@gmail.com");
         accountPage.getNewName().sendKeys(methods.generateRandomHexString(2));
-        File file = new File(new File(Constants.AVATAR_PATH_FOR_CHANGE).getAbsolutePath());
+        File file = new File(new File(constants.getAVATAR_PATH_FOR_CHANGE()).getAbsolutePath());
         accountPage.getNewAvatarButton().sendKeys(file.getAbsolutePath());
         accountPage.getUpdateProfileSaveButton().shouldBe(Condition.visible).click();
         accountPage.getErrorMessageChangeUser().shouldHave(Condition.text("USERNAME_SIZE_NOT_VALID"));
         assertEquals("USERNAME_SIZE_NOT_VALID", accountPage.getErrorMessageChangeUser().getText(), "Wrong error message");
-        open(Constants.HOME_PAGE_URL);
+        open(constants.getHOME_PAGE_URL());
         methods.deleteUser();
     }
 
@@ -74,12 +75,12 @@ public class ChangeUserInfoTest extends SetUp {
         accountPage.getUpdateProfileWindow().shouldBe(Condition.visible);
         accountPage.getNewEmail().sendKeys(methods.generateRandomHexString(6));
         accountPage.getNewName().sendKeys(methods.generateRandomHexString(6));
-        File file = new File(new File(Constants.AVATAR_PATH_FOR_CHANGE).getAbsolutePath());
+        File file = new File(new File(constants.getAVATAR_PATH_FOR_CHANGE()).getAbsolutePath());
         accountPage.getNewAvatarButton().sendKeys(file.getAbsolutePath());
         accountPage.getUpdateProfileSaveButton().shouldBe(Condition.visible).click();
         accountPage.getErrorMessageChangeUser().shouldHave(Condition.text("unknown"));
         assertEquals("unknown", accountPage.getErrorMessageChangeUser().getText(), "Wrong error message");
-        open(Constants.HOME_PAGE_URL);
+        open(constants.getHOME_PAGE_URL());
         methods.deleteUser();
     }
 }

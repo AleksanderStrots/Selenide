@@ -14,6 +14,7 @@ public class GetNewsWithPaginationTest extends SetUp {
     private final HeaderElements headerElements = new HeaderElements();
     private final AccountPage accountPage = new AccountPage();
     private final HomePage homePage = new HomePage();
+    private final Constants constants = new Constants();
 
     @SneakyThrows
     @Epic(value = "Home page.")
@@ -23,14 +24,14 @@ public class GetNewsWithPaginationTest extends SetUp {
     @Test
     public void getNewsWithPaginationTest() {
         methods.registration(10);
-        for (int i = 0; i < Constants.POSTS_ON_PAGE * 2; i++) {
+        for (int i = 0; i < constants.getPOSTS_ON_PAGE() * 2; i++) {
             methods.createPost(10,10,10);
         }
-        open(Constants.HOME_PAGE_URL);
+        open(constants.getHOME_PAGE_URL());
         Thread.sleep(2000);
         int currentPostsOnPage = homePage.getPosts().size();
         System.out.println(currentPostsOnPage);
-        sa.assertTrue(Constants.POSTS_ON_PAGE == currentPostsOnPage);
+        sa.assertTrue(constants.getPOSTS_ON_PAGE() == currentPostsOnPage);
         homePage.getBody().scrollIntoView(false);
         Thread.sleep(2000);
         int currentPostsOnPageAfterScroll = homePage.getPosts().size();

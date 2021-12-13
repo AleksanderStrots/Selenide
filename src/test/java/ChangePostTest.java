@@ -11,6 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class ChangePostTest extends SetUp {
     private final AccountPage accountPage = new AccountPage();
     private final Methods methods = new Methods();
+    private final Constants constants = new Constants();
     SoftAssert sa = new SoftAssert();
 
     @Epic(value = "Account page.")
@@ -30,7 +31,7 @@ public class ChangePostTest extends SetUp {
         String postText = accountPage.getChangePostTextField().getAttribute("value");
         accountPage.getChangePostTagsField().setValue(Methods.generateRandomHexString(10));
         String tag = accountPage.getChangePostTagsField().getAttribute("value");
-        File file = new File(new File(Constants.POST_PICTURE_PATH_FOR_CHANGE).getAbsolutePath());
+        File file = new File(new File(constants.getPOST_PICTURE_PATH_FOR_CHANGE()).getAbsolutePath());
         accountPage.getNewAvatarButton().sendKeys(file.getAbsolutePath());
 
         accountPage.getChangePostSaveButton().shouldBe(Condition.visible).click();
