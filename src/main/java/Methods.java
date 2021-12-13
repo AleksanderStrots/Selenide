@@ -2,10 +2,8 @@ import com.codeborne.selenide.Condition;
 import io.qameta.allure.Step;
 import lombok.SneakyThrows;
 import org.openqa.selenium.Alert;
-
 import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.Selenide.switchTo;
-
 import java.io.File;
 import java.util.Random;
 
@@ -40,14 +38,12 @@ public class Methods {
         loginPage.getEmailReg().shouldBe(Condition.visible).click();
         loginPage.getEmailReg().sendKeys(generateRandomHexString(symbolCount) + "@gmail.com");
         emailText = loginPage.getEmailReg().getAttribute("value");
-        System.out.println(emailText);
         loginPage.getLoginReg().shouldBe(Condition.visible).click();
         loginPage.getLoginReg().sendKeys(generateRandomHexString(symbolCount));
         loginText = loginPage.getLoginReg().getAttribute("value");
         loginPage.getPasswordReg().shouldBe(Condition.visible).click();
         loginPage.getPasswordReg().sendKeys(generateRandomHexString(symbolCount));
         passwordText = loginPage.getPasswordReg().getAttribute("value");
-        System.out.println(passwordText);
         File file = new File(new File(Constants.AVATAR_PATH_FOR_REG).getAbsolutePath());
         loginPage.getAvatarReg().sendKeys(file.getAbsolutePath());
         loginPage.getSaveButton().click();
