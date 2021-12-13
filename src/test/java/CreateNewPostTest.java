@@ -19,16 +19,13 @@ public class CreateNewPostTest extends SetUp {
     @Description(value = "Post creation check with valid values.")
     @Test
     public void createNewPostTestPositive() {
-
         methods.registration(6);
         methods.createPost(10,10,10);
         accountPage.getPost().shouldBe(Condition.visible);
-
         sa.assertEquals(accountPage.getPostTitle().getText(), methods.title, "Wrong title");
         sa.assertEquals(accountPage.getPostText().getText(), methods.postText, "Wrong content");
         sa.assertEquals(accountPage.getPostTag().getText(), "#" + methods.tag, "Wrong tag");
         sa.assertEquals(accountPage.getPostAuthor().getText(), methods.loginText, "Wrong author");
-
         headerElements.getHomeButton().shouldBe(Condition.visible).click();
         homePage.getPost().shouldBe(Condition.visible);
         sa.assertTrue(homePage.getPost().exists(), "Post not exists");
@@ -55,7 +52,7 @@ public class CreateNewPostTest extends SetUp {
 
     @Epic(value = "Account page.")
     @Feature("Create post.")
-    @Story("Invalid content.")
+    @Story("Invalid text.")
     @Description(value = "Post creation check with invalid content.")
     @Test
     public void createNewPostTestNegativeInvalidContent() {
@@ -70,13 +67,12 @@ public class CreateNewPostTest extends SetUp {
 
     @Epic(value = "Account page.")
     @Feature("Create post.")
-    @Story("Invalid tags.")
-    @Description(value = "Post creation check with invalid tags.")
+    @Story("Invalid tag.")
+    @Description(value = "Post creation check with invalid tag.")
     @Test
-    public void createNewPostTestNegativeInvalidTags() {
+    public void createNewPostTestNegativeInvalidTag() {
         methods.registration(6);
         methods.createPost(10,10,0);
-
         accountPage.getErrorMessage().should(Condition.exist);
         sa.assertTrue(accountPage.getErrorMessage().exists(), "Error message not exists");
         sa.assertEquals(accountPage.getErrorMessage().getText(), "TAGS_NOT_VALID", "Wrong error message");

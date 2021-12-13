@@ -6,6 +6,8 @@ import io.qameta.allure.Story;
 import org.junit.jupiter.api.Test;
 import org.testng.asserts.SoftAssert;
 import java.io.File;
+import static com.codeborne.selenide.Selenide.open;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ChangeUserInfoTest extends SetUp {
 
@@ -19,10 +21,8 @@ public class ChangeUserInfoTest extends SetUp {
     @Story("Valid values.")
     @Description(value = "Checking user information change.")
     @Test
-    public void changeUserInfo() {
-
+    public void changeUserInfoTestPositive() {
         methods.registration(6);
-
         headerElements.getAccountButton().shouldBe(Condition.visible).click();
         accountPage.getUpdateButton().shouldBe(Condition.visible).click();
         accountPage.getUpdateProfileWindow().shouldBe(Condition.visible);
@@ -38,7 +38,48 @@ public class ChangeUserInfoTest extends SetUp {
         sa.assertEquals(accountPage.getEmailInfo().getText(), ("User e-mail: " + newEmail), "Wrong user e-mail");
         sa.assertEquals(accountPage.getLoginInfo().getText(), ("User login: " + newName), "Wrong user login");
         sa.assertAll();
+        methods.deleteUser();
+    }
 
+    @Epic(value = "Account page.")
+    @Feature("Change user info.")
+    @Story("Invalid name.")
+    @Description(value = "Checking user information change with invalid name.")
+    @Test
+    public void changeUserInfoTestNegativeInvalidName() {
+        methods.registration(10);
+        headerElements.getAccountButton().shouldBe(Condition.visible).click();
+        accountPage.getUpdateButton().shouldBe(Condition.visible).click();
+        accountPage.getUpdateProfileWindow().shouldBe(Condition.visible);
+        accountPage.getNewEmail().sendKeys(methods.generateRandomHexString(6) + "@gmail.com");
+        accountPage.getNewName().sendKeys(methods.generateRandomHexString(2));
+        File file = new File(new File(Constants.AVATAR_PATH_FOR_CHANGE).getAbsolutePath());
+        accountPage.getNewAvatarButton().sendKeys(file.getAbsolutePath());
+        accountPage.getUpdateProfileSaveButton().shouldBe(Condition.visible).click();
+        accountPage.getErrorMessageChangeUser().shouldHave(Condition.text("USERNAME_SIZE_NOT_VALID"));
+        assertEquals("USERNAME_SIZE_NOT_VALID", accountPage.getErrorMessageChangeUser().getText(), "Wrong error message");
+        open(Constants.HOME_PAGE_URL);
+        methods.deleteUser();
+    }
+
+    @Epic(value = "Account page.")
+    @Feature("Change user info.")
+    @Story("Invalid email.")
+    @Description(value = "Checking user information change with invalid email.")
+    @Test
+    public void changeUserInfoTestNegativeInvalidEmail() {
+        methods.registration(10);
+        headerElements.getAccountButton().shouldBe(Condition.visible).click();
+        accountPage.getUpdateButton().shouldBe(Condition.visible).click();
+        accountPage.getUpdateProfileWindow().shouldBe(Condition.visible);
+        accountPage.getNewEmail().sendKeys(methods.generateRandomHexString(6));
+        accountPage.getNewName().sendKeys(methods.generateRandomHexString(6));
+        File file = new File(new File(Constants.AVATAR_PATH_FOR_CHANGE).getAbsolutePath());
+        accountPage.getNewAvatarButton().sendKeys(file.getAbsolutePath());
+        accountPage.getUpdateProfileSaveButton().shouldBe(Condition.visible).click();
+        accountPage.getErrorMessageChangeUser().shouldHave(Condition.text("unknown"));
+        assertEquals("unknown", accountPage.getErrorMessageChangeUser().getText(), "Wrong error message");
+        open(Constants.HOME_PAGE_URL);
         methods.deleteUser();
     }
 }

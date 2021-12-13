@@ -19,10 +19,8 @@ public class GetDistinctNewsTest extends SetUp {
     @Description(value = "Check the search functionality.")
     @Test
     public void getDistinctNewsTest() {
-
         methods.registration(6);
         methods.createPost(10,10,10);
-
         headerElements.getHomeButton().shouldBe(Condition.visible).click();
         homePage.getSearchField().val(methods.title);
         homePage.getSearchButton().shouldBe(Condition.visible).click();

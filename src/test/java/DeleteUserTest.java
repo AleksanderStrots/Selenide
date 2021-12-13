@@ -7,16 +7,14 @@ import org.junit.jupiter.api.Test;
 import org.testng.asserts.SoftAssert;
 
 public class DeleteUserTest extends SetUp {
-
     private final Methods methods = new Methods();
     private final HeaderElements headerElements = new HeaderElements();
-    private final AccountPage accountPage = new AccountPage();
     private final SoftAssert sa = new SoftAssert();
 
     @Epic(value = "Account page.")
     @Feature("Delete user.")
     @Story("Delete user.")
-    @Description(value = "checking user deletion.")
+    @Description(value = "Checking user deletion.")
     @Test
     public void deleteUserTest() {
         methods.registration(6);

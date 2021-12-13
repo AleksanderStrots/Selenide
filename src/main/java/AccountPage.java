@@ -9,20 +9,21 @@ import static com.codeborne.selenide.Selenide.$$;
 public class AccountPage {
 
     SelenideElement userInfo = $(By.xpath("//div[contains(text(),'User info')]"));
-    SelenideElement updateButton = $$(By.xpath("//button[contains(text(),'Update')]")).get(0);
+    SelenideElement updateButton = $(By.xpath("//button[contains(text(),'Update')]"));
     SelenideElement newPostButton = $(By.xpath("//button[contains(text(),'New Post')]"));
     SelenideElement loginInfo = $(By.xpath("//body/div[@id='root']/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]"));
     SelenideElement emailInfo = $(By.xpath("//body[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[2]"));
-    SelenideElement deleteProfileButton = $(By.cssSelector("div.Profile_profile__3dzvr div:nth-child(2) div:nth-child(1) div:nth-child(2) > a.UpdateProfile_delete_button__3o7zK.active"));
+    SelenideElement deleteProfileButton = $(By.xpath("//body[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[2]/button[2]"));
+    SelenideElement errorMessageChangeUser = $(By.xpath("//body[1]/div[1]/div[1]/div[1]/div[2]/div[1]"));
 
     // post
     SelenideElement post = $(By.cssSelector("#root > div > div > div:nth-child(2) > div:nth-child(4) > div"));
     SelenideElement postTitle = $(By.xpath("/html[1]/body[1]/div[1]/div[1]/div[1]/div[2]/div[4]/div[1]/div[1]/div[1]"));
-    SelenideElement postText = $(By.xpath("/html[1]/body[1]/div[1]/div[1]/div[1]/div[2]/div[4]/div[1]/div[1]/p[1]"));
-    SelenideElement postTag = $(By.xpath("/html[1]/body[1]/div[1]/div[1]/div[1]/div[2]/div[4]/div[1]/div[1]/div[2]"));
+    SelenideElement postText = $(By.tagName("p"));
+    SelenideElement postTag = $(By.xpath("//body/div[@id='root']/div[1]/div[1]/div[2]/div[4]/div[1]/div[1]/div[2]"));
     SelenideElement postAuthor = $(By.xpath("/html[1]/body[1]/div[1]/div[1]/div[1]/div[2]/div[4]/div[1]/a[1]"));
-    SelenideElement deletePostButton = $(By.xpath("//button[contains(text(),'Delete')]"));
-    SelenideElement changePostButton = $$("//button[contains(text(),'Update')]").get(1);
+    SelenideElement deletePostButton = $(By.xpath("//body[1]/div[1]/div[1]/div[1]/div[2]/div[4]/div[1]/div[2]/button[1]"));
+    SelenideElement changePostButton = $$(By.xpath("//button[contains(text(),'Update')]")).get(1);
     SelenideElement errorMessage = $(By.cssSelector("div:nth-child(2) div:nth-child(1) div.Profile_profile__3dzvr div:nth-child(2) > div.fade.alert.alert-danger.show:nth-child(4)"));
 
     // update post form

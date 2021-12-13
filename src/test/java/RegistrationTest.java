@@ -11,6 +11,7 @@ public class RegistrationTest extends SetUp {
     private final Methods methods = new Methods();
     private final HeaderElements headerElements = new HeaderElements();
     private final SoftAssert sa = new SoftAssert();
+    private final LoginPage loginPage = new LoginPage();
 
     @Epic(value = "Login page.")
     @Feature("Registration.")
@@ -35,5 +36,22 @@ public class RegistrationTest extends SetUp {
         sa.assertTrue(headerElements.getErrorMessage().exists(), "Error message not exists");
         sa.assertEquals(headerElements.getErrorMessage().getText(), "USERNAME_SIZE_NOT_VALID", "Wrong error message");
         sa.assertAll();
+    }
+
+    @Epic(value = "Login page.")
+    @Feature("Registration.")
+    @Story("Existing email.")
+    @Description(value = "Check error message exists.")
+    @Test
+    public void registrationTestNegativeExistingEmail() {
+        methods.registration(10);
+        headerElements.getQuitButton().click();
+        headerElements.getSignUpButton().shouldBe(Condition.visible).click();
+        loginPage.getEmailReg().shouldBe(Condition.visible).click();
+        loginPage.getEmailReg().sendKeys(methods.emailText);
+        loginPage.getLoginReg().sendKeys(methods.generateRandomHexString(10));
+        loginPage.getSaveButton().shouldBe(Condition.visible).click();
+        headerElements.getErrorMessage().shouldBe(Condition.visible);
+        assertEquals("User already exists", headerElements.getErrorMessage().getText(), "Wrong error message");
     }
 }

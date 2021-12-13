@@ -11,9 +11,9 @@ public class DeletePostTest extends SetUp {
     private final AccountPage accountPage = new AccountPage();
 
     @Epic(value = "Account page.")
-    @Feature("Delete user.")
+    @Feature("Delete Post.")
     @Story("Delete Post.")
-    @Description(value = "checking user deletion.")
+    @Description(value = "Checking user deletion.")
     @Test
     public void deletePostTest() {
         methods.registration(6);

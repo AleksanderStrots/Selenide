@@ -36,21 +36,21 @@ public class Methods {
     public void registration(int symbolCount) {
         open(Constants.HOME_PAGE_URL);
         headerElements.getSignUpButton().shouldBe(Condition.visible).click();
-        loginPage.regWindow.shouldBe(Condition.visible);
-        loginPage.emailReg.shouldBe(Condition.visible).click();
-        loginPage.emailReg.sendKeys(generateRandomHexString(symbolCount) + "@gmail.com");
-        emailText = loginPage.emailReg.getAttribute("value");
+        loginPage.getRegWindow().shouldBe(Condition.visible);
+        loginPage.getEmailReg().shouldBe(Condition.visible).click();
+        loginPage.getEmailReg().sendKeys(generateRandomHexString(symbolCount) + "@gmail.com");
+        emailText = loginPage.getEmailReg().getAttribute("value");
         System.out.println(emailText);
-        loginPage.loginReg.shouldBe(Condition.visible).click();
-        loginPage.loginReg.sendKeys(generateRandomHexString(symbolCount));
-        loginText = loginPage.loginReg.getAttribute("value");
-        loginPage.passwordReg.shouldBe(Condition.visible).click();
-        loginPage.passwordReg.sendKeys(generateRandomHexString(symbolCount));
-        passwordText = loginPage.passwordReg.getAttribute("value");
+        loginPage.getLoginReg().shouldBe(Condition.visible).click();
+        loginPage.getLoginReg().sendKeys(generateRandomHexString(symbolCount));
+        loginText = loginPage.getLoginReg().getAttribute("value");
+        loginPage.getPasswordReg().shouldBe(Condition.visible).click();
+        loginPage.getPasswordReg().sendKeys(generateRandomHexString(symbolCount));
+        passwordText = loginPage.getPasswordReg().getAttribute("value");
         System.out.println(passwordText);
         File file = new File(new File(Constants.AVATAR_PATH_FOR_REG).getAbsolutePath());
-        loginPage.avatarReg.sendKeys(file.getAbsolutePath());
-        loginPage.saveButton.click();
+        loginPage.getAvatarReg().sendKeys(file.getAbsolutePath());
+        loginPage.getSaveButton().click();
         headerElements.getHelloHeader().shouldBe(Condition.visible);
     }
 

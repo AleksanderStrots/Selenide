@@ -19,10 +19,8 @@ public class LoginTest extends SetUp {
     @Description(value = "Check sign in with email and password.")
     @Test
     public void loginTestPositive() {
-
         // registration
         methods.registration(6);
-
         // login
         headerElements.getQuitButton().click();
         headerElements.getEmailField().sendKeys(methods.emailText);
@@ -30,7 +28,6 @@ public class LoginTest extends SetUp {
         headerElements.getLogInButton().click();
         headerElements.getHelloHeader().shouldHave(Condition.text("Hello, " + methods.loginText));
         assertEquals(("Hello, " + methods.loginText), headerElements.getHelloHeader().getText(), "Greeting not matching");
-
         // delete user
         methods.deleteUser();
     }
@@ -42,7 +39,6 @@ public class LoginTest extends SetUp {
     @Test
     public void loginTestNegativeInvalidPassword() {
         methods.registration(6);
-
         headerElements.getQuitButton().click();
         headerElements.getEmailField().sendKeys(methods.emailText);
         headerElements.getPasswordField().sendKeys(Methods.generateRandomHexString(10));
@@ -60,7 +56,6 @@ public class LoginTest extends SetUp {
     @Test
     public void loginTestNegativeInvalidEmail() {
         methods.registration(6);
-
         headerElements.getQuitButton().click();
         headerElements.getEmailField().sendKeys(Methods.generateRandomHexString(10) + "@gmail.com");
         headerElements.getPasswordField().sendKeys(methods.passwordText);
