@@ -39,10 +39,6 @@ public class GetNewsWithPaginationTest extends SetUp {
         sa.assertTrue(currentPostsOnPageAfterScroll == currentPostsOnPage * 2);
         headerElements.getAccountButton().shouldBe(Condition.visible).click();
         sa.assertAll();
-        while(accountPage.getPost().exists()) {
-            accountPage.getPost().shouldBe(Condition.visible);
-            accountPage.getDeletePostButton().shouldBe(Condition.visible).click();
-        }
         methods.deleteUser();
     }
 }

@@ -1,10 +1,10 @@
 # Default ignored files
 /shelf/
-/workspace.xml
+/.idea/workspace.xml
 target/
 log/
-../build
-../allure-results
+build/
+allure-results/
 
 # Mac
 .DS_Store
