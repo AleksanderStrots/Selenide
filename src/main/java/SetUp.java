@@ -17,7 +17,7 @@ public class SetUp {
     public void setUp() {
         Configuration.startMaximized = true;
         Configuration.timeout = 10000;
-//        Configuration.headless = true;
+        Configuration.headless = true;
     }
 
     @AfterEach

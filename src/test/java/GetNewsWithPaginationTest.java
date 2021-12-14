@@ -30,15 +30,15 @@ public class GetNewsWithPaginationTest extends SetUp {
         open(constants.getHOME_PAGE_URL());
         Thread.sleep(2000);
         int currentPostsOnPage = homePage.getPosts().size();
-        System.out.println(currentPostsOnPage);
+//        System.out.println(currentPostsOnPage);
         sa.assertTrue(constants.getPOSTS_ON_PAGE() == currentPostsOnPage);
         homePage.getBody().scrollIntoView(false);
         Thread.sleep(2000);
         int currentPostsOnPageAfterScroll = homePage.getPosts().size();
-        System.out.println(currentPostsOnPageAfterScroll);
+//        System.out.println(currentPostsOnPageAfterScroll);
         sa.assertTrue(currentPostsOnPageAfterScroll == currentPostsOnPage * 2);
         headerElements.getAccountButton().shouldBe(Condition.visible).click();
-        sa.assertAll();
         methods.deleteUser();
+        sa.assertAll();
     }
 }

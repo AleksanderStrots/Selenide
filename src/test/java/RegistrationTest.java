@@ -49,7 +49,7 @@ public class RegistrationTest extends SetUp {
         headerElements.getSignUpButton().shouldBe(Condition.visible).click();
         loginPage.getEmailReg().shouldBe(Condition.visible).click();
         loginPage.getEmailReg().sendKeys(methods.emailText);
-        loginPage.getLoginReg().sendKeys(methods.generateRandomHexString(10));
+        loginPage.getLoginReg().sendKeys(Methods.generateRandomHexString(10));
         loginPage.getSaveButton().shouldBe(Condition.visible).click();
         headerElements.getErrorMessage().shouldBe(Condition.visible);
         assertEquals("User already exists", headerElements.getErrorMessage().getText(), "Wrong error message");
